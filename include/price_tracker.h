@@ -13,3 +13,12 @@ typedef struct Chart {
     long long ticks = 0;
 };
 
+class PriceTracker : public ISubscriber {
+public:
+    void on_price(const price_packet& p) override;
+    std::string name() const override {return "Price Tracker"}
+    void print_all();
+    
+private:
+    std::unordered_map <std::string, Chart> data_;
+}
